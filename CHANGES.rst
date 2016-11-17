@@ -13,6 +13,7 @@
   - Dockerfile with ``hadolint`` [GH-1194]
   - AsciiDoc with ``asciidoctor`` [GH-1167]
   - CSS/SCSS/LESS with ``stylelint`` [GH-903]
+  - Nix with ``nix-instantiate`` [GH-1164]
 
 - New features:
 
