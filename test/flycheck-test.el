@@ -3798,8 +3798,10 @@ Why not:
 (flycheck-ert-def-checker-test ruby-rubocop ruby syntax-error
   (flycheck-ert-should-syntax-check
    "language/ruby/syntax-error.rb" 'ruby-mode
-   '(5 7 error "unexpected token tCONSTANT" :checker ruby-rubocop)
-   '(5 24 error "unterminated string meets end of file" :checker ruby-rubocop)))
+   '(5 7 error "unexpected token tCONSTANT (Using Ruby 2.1 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)"
+       :checker ruby-rubocop)
+   '(5 24 error "unterminated string meets end of file (Using Ruby 2.1 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)"
+       :checker ruby-rubocop)))
 
 (flycheck-ert-def-checker-test ruby-rubylint ruby syntax-error
   (let ((flycheck-disabled-checkers '(ruby-rubocop)))
@@ -3840,8 +3842,10 @@ Why not:
         :id "Lint/LiteralInCondition" :checker ruby-rubocop)
    '(10 13 info "Do not use `then` for multi-line `if`."
         :id "Style/MultilineIfThen" :checker ruby-rubocop)
+   '(11 7 info "Redundant `return` detected."
+        :id "Style/RedundantReturn" :checker ruby-rubocop)
    '(11 24 error "undefined instance variable @name" :checker ruby-rubylint)
-   '(16 1 error "wrong number of arguments (expected 2..3 but got 0)"
+   '(16 1 error "wrong number of arguments for 'test' (expected 2..3 but got 0)"
         :checker ruby-rubylint)))
 
 (flycheck-ert-def-checker-test ruby ruby warnings
