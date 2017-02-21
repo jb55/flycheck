@@ -3622,7 +3622,7 @@ Why not:
   (let ((python-indent-guess-indent-offset nil))       ; Silence Python Mode!
     (flycheck-ert-should-syntax-check
      "language/python/syntax-error.py" 'python-mode
-     '(3 13 error "SyntaxError: invalid syntax" :id "E999"
+     '(3 12 error "SyntaxError: invalid syntax" :id "E999"
          :checker python-flake8))))
 
 (flycheck-ert-def-checker-test python-flake8 python nil
@@ -3632,12 +3632,12 @@ Why not:
        :checker python-flake8)
    '(7 1 warning "expected 2 blank lines, found 1" :id "E302"
        :checker python-flake8)
-   '(9 9 info "function name should be lowercase"
-       :checker python-flake8 :id "N802")
    '(12 29 warning "unexpected spaces around keyword / parameter equals"
         :id "E251" :checker python-flake8)
    '(12 31 warning "unexpected spaces around keyword / parameter equals"
         :id "E251" :checker python-flake8)
+   '(21 1 warning "expected 2 blank lines after class or function definition, found 1"
+        :id "E305" :checker python-flake8)
    '(22 1 error "undefined name 'antigravity'" :id "F821"
         :checker python-flake8)))
 
@@ -3646,7 +3646,8 @@ Why not:
         (python-indent-guess-indent-offset nil)) ; Silence Python Mode
     (flycheck-ert-should-syntax-check
      "language/python/syntax-error.py" 'python-mode
-     '(3 1 error "invalid syntax" :id "syntax-error" :checker python-pylint))))
+     '(3 1 error "invalid syntax (<string>, line 3)"
+         :id "syntax-error" :checker python-pylint))))
 
 (flycheck-ert-def-checker-test python-pylint python nil
   (let ((flycheck-disabled-checkers '(python-flake8)))
@@ -3664,18 +3665,12 @@ Why not:
      '(9 5 info "Missing method docstring" :id "missing-docstring" :checker python-pylint)
      '(9 5 warning "Method could be a function" :id "no-self-use"
          :checker python-pylint)
-     '(10 16 warning "Used builtin function 'map'. Using a list comprehension can be clearer."
-          :id "bad-builtin" :checker python-pylint)
      '(12 1 info "No space allowed around keyword argument assignment"
           :id "bad-whitespace" :checker python-pylint)
      '(12 5 info "Missing method docstring" :id "missing-docstring" :checker python-pylint)
      '(12 5 warning "Method could be a function" :id "no-self-use"
           :checker python-pylint)
      '(14 16 error "Module 'sys' has no 'python_version' member" :id "no-member"
-          :checker python-pylint)
-     '(15 1 info "Unnecessary parens after u'print' keyword" :id "superfluous-parens"
-          :checker python-pylint)
-     '(17 1 info "Unnecessary parens after u'print' keyword" :id "superfluous-parens"
           :checker python-pylint)
      '(22 1 error "Undefined variable 'antigravity'" :id "undefined-variable"
           :checker python-pylint))))
@@ -3697,18 +3692,12 @@ Why not:
      '(9 5 info "Missing method docstring" :id "C0111" :checker python-pylint)
      '(9 5 warning "Method could be a function" :id "R0201"
          :checker python-pylint)
-     '(10 16 warning "Used builtin function 'map'. Using a list comprehension can be clearer."
-          :id "W0141" :checker python-pylint)
      '(12 1 info "No space allowed around keyword argument assignment"
           :id "C0326" :checker python-pylint)
      '(12 5 info "Missing method docstring" :id "C0111" :checker python-pylint)
      '(12 5 warning "Method could be a function" :id "R0201"
           :checker python-pylint)
      '(14 16 error "Module 'sys' has no 'python_version' member" :id "E1101"
-          :checker python-pylint)
-     '(15 1 info "Unnecessary parens after u'print' keyword" :id "C0325"
-          :checker python-pylint)
-     '(17 1 info "Unnecessary parens after u'print' keyword" :id "C0325"
           :checker python-pylint)
      '(22 1 error "Undefined variable 'antigravity'" :id "E0602"
           :checker python-pylint))))
